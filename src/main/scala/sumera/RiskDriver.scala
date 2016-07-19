@@ -14,7 +14,7 @@ object RiskDriver extends App {
   val df = sqlContext.range(5, 11)
   // Create an instance of UDAF GeometricMean.
   val vm = new VaRMean
-  // Show the geometric mean of values of column "id".
+  // mean of values of column "id".
   df.groupBy().agg(vm(col("id")).as("VaRMean")).show()
   // Register the UDAF and call it "gm".
   sqlContext.udf.register("vm", vm)
