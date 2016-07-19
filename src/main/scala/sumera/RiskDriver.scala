@@ -16,7 +16,7 @@ object RiskDriver extends App {
   val vm = new VaRMean
   // mean of values of column "id".
   df.groupBy().agg(vm(col("id")).as("VaRMean")).show()
-  // Register the UDAF and call it "gm".
+  // Register the UDAF and call it "vm".
   sqlContext.udf.register("vm", vm)
   // Invoke the UDAF by its assigned name.
   df.groupBy().agg(expr("vm(id) as VaRMean")).show()
